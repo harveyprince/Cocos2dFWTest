@@ -7,7 +7,8 @@ var g_resources = [
 var res = {
     BackGround_png : "res/background.png",
     Start_N_png : "res/start_N.png",
-    Start_S_png : "res/start_S.png"
+    Start_S_png : "res/start_S.png",
+    Sushi_png : "res/sushi_1n/sushi_1n.png"
 };
 var StartLayer = cc.Layer.extend({
     ctor:function () {
@@ -28,6 +29,7 @@ var StartLayer = cc.Layer.extend({
             res.Start_S_png,
             function () {
                 cc.log("Menu is clicked!");
+                cc.director.runScene( new PlayScene() );
             }, this);
         startItem.attr({
             x: size.width/2,

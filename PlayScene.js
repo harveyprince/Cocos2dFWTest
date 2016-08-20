@@ -1,15 +1,6 @@
 /**
  * Created by harveyprince on 16/8/20.
  */
-var g_resources = [
-    "res/background.png"
-];
-var res = {
-    BackGround_png : "res/background.png",
-    Start_N_png : "res/start_N.png",
-    Start_S_png : "res/start_S.png",
-    Sushi_png : "res/sushi_1n/sushi_1n.png"
-};
 var PlayLayer = cc.Layer.extend({
     bgSprite:null,
     SushiSprites:null,
@@ -18,14 +9,11 @@ var PlayLayer = cc.Layer.extend({
         this.SushiSprites = [];
 
         var size = cc.director.getWinSize();
-
         // add bg
         this.bgSprite = new cc.Sprite(res.BackGround_png);
         this.bgSprite.attr({
             x: size.width / 2,
             y: size.height / 2,
-            //scale: 0.5,
-            rotation: 180
         });
         this.addChild(this.bgSprite, 0);
 
@@ -77,12 +65,3 @@ var PlayScene = cc.Scene.extend({
         this.addChild(layer);
     }
 });
-window.onload = function(){
-    cc.game.onStart = function(){
-        //load resources
-        cc.LoaderScene.preload(g_resources, function () {
-            cc.director.runScene(new PlayScene());
-        }, this);
-    };
-    cc.game.run("gameCanvas");
-};
