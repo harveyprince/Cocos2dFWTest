@@ -1,6 +1,34 @@
 /**
  * Created by harveyprince on 16/8/20.
  */
+var SushiSprite = cc.Sprite.extend({
+    onEnter: function(){
+        cc.log('onEnter');
+        this._super();
+        this.addTouchEventListenser();
+    },
+    onExit: function(){
+        cc.log('onExit');
+    },
+    addTouchEventListenser: function(){
+        this.touchListener = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            // When "swallow touches" is true, then returning 'true' from the onTouchBegan method will "swallow" the touch event, preventing other listeners from using it.
+            swallowTouches: true,
+            //onTouchBegan event callback function
+            onTouchBegan: function(touch, event){
+                var pos = touch.getLocation();
+                var target = event.getCurrentTarget();
+                if ( cc.rectContainsPoint(target.getBoundingBox(),pos)) {
+                    cc.log("touched")
+                    return true;
+                }
+                return false;
+            }
+        });
+        cc.eventManager.addListener(this.touchListener,this);
+    }
+});
 var PlayLayer = cc.Layer.extend({
     bgSprite:null,
     SushiSprites:null,
@@ -23,7 +51,7 @@ var PlayLayer = cc.Layer.extend({
     },
     addSushi : function() {
 
-        var sushi = new cc.Sprite(res.Sushi_png);
+        var sushi = new SushiSprite(res.Sushi_png);
         this.SushiSprites.push(sushi);
         var size = cc.winSize;
 
