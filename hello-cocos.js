@@ -1,9 +1,6 @@
 /**
  * Created by harveyprince on 16/8/19.
  */
-var g_resources = [
-    "res/background.png"
-];
 var res = {
     BackGround_png : "res/background.png",
     Start_N_png : "res/start_N.png",
@@ -13,6 +10,15 @@ var res = {
     Sushi_1_png: "res/sushi_1n/sushi_1n.png"
 
 };
+var g_resources = [
+    res.BackGround_png,
+    res.Start_N_png,
+    res.Start_S_png,
+    res.Sushi_plist,
+    res.Sushi_png,
+    res.Sushi_1_png
+];
+
 var StartLayer = cc.Layer.extend({
     ctor:function () {
         this._super();
